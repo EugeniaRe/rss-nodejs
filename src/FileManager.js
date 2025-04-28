@@ -1,5 +1,8 @@
+import fs from "fs";
+import path from "path";
 import os from "os";
 import readline from "readline";
+import * as navigation from "./commands/navigation.js";
 export class FileManager {
   constructor(username) {
     this.username = username;
@@ -43,6 +46,34 @@ export class FileManager {
     });
   }
 
+  async processCommand(input) {
+    if (input === ".exit") {
+      this.exit();
+      return;
+    }
+
+    const [command, ...args] = input.split(/\s+/);
+
+    try {
+      switch (command) {
+        case "up":
+          this.currentDir = await navigation.up(this.currentDir);
+          this.showCurrentDir();
+          break;
+        case "cd":
+          this.currentDir = await navigation.cd(this.currentDir, args[0]);
+          this.showCurrentDir();
+          break;
+        case "ls":
+          await navigation.ls(this.currentDir);
+          break;
+        default:
+          console.log("Invalid input");
+      }
+    } catch (error) {
+      console.log("Operation failed");
+    }
+  }
   exit() {
     if (this.alreadyExiting) return;
     this.alreadyExiting = true;
