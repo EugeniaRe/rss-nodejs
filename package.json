@@ -4,7 +4,7 @@
   "description": "- Work using CLI\r - Perform basic file operations (copy, move, delete, rename, etc.)\r - Utilize Streams API\r - Get information about the host machine operating system\r - Perform hash calculations\r - Compress and decompress files",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js"
   },
   "type": "module",
   "repository": {
