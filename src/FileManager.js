@@ -4,6 +4,7 @@ import os from "os";
 import readline from "readline";
 import * as navigation from "./commands/navigation.js";
 import * as files from "./commands/files.js";
+import { getOsInfo } from "./commands/osInfo.js";
 export class FileManager {
   constructor(username) {
     this.username = username;
@@ -88,6 +89,9 @@ export class FileManager {
           break;
         case "rm":
           await files.deleteFile(this.currentDir, args[0]);
+          break;
+        case "os":
+          await getOsInfo(args[0]);
           break;
         default:
           console.log("Invalid input");
