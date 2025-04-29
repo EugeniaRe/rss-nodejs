@@ -6,6 +6,9 @@ import * as navigation from "./commands/navigation.js";
 import * as files from "./commands/files.js";
 import { getOsInfo } from "./commands/osInfo.js";
 import { calculateHash } from "./commands/hash.js";
+import { compressFile } from "./commands/compress.js";
+import { decompressFile } from "./commands/decompress.js";
+
 export class FileManager {
   constructor(username) {
     this.username = username;
@@ -96,6 +99,12 @@ export class FileManager {
           break;
         case "hash":
           await calculateHash(this.currentDir, args[0]);
+          break;
+        case "compress":
+          await compressFile(this.currentDir, args[0], args[1]);
+          break;
+        case "decompress":
+          await decompressFile(this.currentDir, args[0], args[1]);
           break;
         default:
           console.log("Invalid input");
