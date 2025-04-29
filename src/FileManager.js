@@ -5,6 +5,7 @@ import readline from "readline";
 import * as navigation from "./commands/navigation.js";
 import * as files from "./commands/files.js";
 import { getOsInfo } from "./commands/osInfo.js";
+import { calculateHash } from "./commands/hash.js";
 export class FileManager {
   constructor(username) {
     this.username = username;
@@ -92,6 +93,9 @@ export class FileManager {
           break;
         case "os":
           await getOsInfo(args[0]);
+          break;
+        case "hash":
+          await calculateHash(this.currentDir, args[0]);
           break;
         default:
           console.log("Invalid input");
