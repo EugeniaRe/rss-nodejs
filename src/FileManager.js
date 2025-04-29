@@ -3,6 +3,7 @@ import path from "path";
 import os from "os";
 import readline from "readline";
 import * as navigation from "./commands/navigation.js";
+import * as files from "./commands/files.js";
 export class FileManager {
   constructor(username) {
     this.username = username;
@@ -66,6 +67,27 @@ export class FileManager {
           break;
         case "ls":
           await navigation.ls(this.currentDir);
+          break;
+        case "cat":
+          await files.readFile(this.currentDir, args[0]);
+          break;
+        case "add":
+          await files.addFile(this.currentDir, args[0]);
+          break;
+        case "mkdir":
+          await files.addDirectory(this.currentDir, args[0]);
+          break;
+        case "rn":
+          await files.renameFile(this.currentDir, args[0], args[1]);
+          break;
+        case "cp":
+          await files.copyFile(this.currentDir, args[0], args[1]);
+          break;
+        case "mv":
+          await files.moveFile(this.currentDir, args[0], args[1]);
+          break;
+        case "rm":
+          await files.deleteFile(this.currentDir, args[0]);
           break;
         default:
           console.log("Invalid input");

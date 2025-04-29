@@ -11,12 +11,12 @@ export const up = async (currentDir) => {
 };
 
 export const cd = async (currentDir, dirPath) => {
-  if (!dirPath) throw new Error("Invalid input");
+  if (!dirPath) console.log("Invalid input");
   const targetDir = path.isAbsolute(dirPath)
     ? dirPath
     : path.join(currentDir, dirPath);
   const stats = await stat(targetDir);
-  if (!stats.isDirectory()) throw new Error("Not a directory");
+  if (!stats.isDirectory()) console.log("Invalid input");
 
   return path.resolve(targetDir);
 };
