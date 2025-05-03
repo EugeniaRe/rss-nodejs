@@ -1,10 +1,10 @@
-import { createReadStream, createWriteStream } from "fs";
+import fs from "fs";
 import { createBrotliDecompress } from "zlib";
-import { pipeline } from "stream/promises";
 import path from "path";
+import { pipeline } from "stream/promises";
 
 export async function decompressFile(currentDir, sourcePath, destinationDir) {
-  if (!sourcePath || !destinationPath) {
+  if (!sourcePath || !destinationDir) {
     console.log("Invalid input");
     return;
   }
@@ -15,10 +15,10 @@ export async function decompressFile(currentDir, sourcePath, destinationDir) {
     const absoluteDestinationDir = path.isAbsolute(destinationDir)
       ? destinationDir
       : path.join(currentDir, destinationDir);
-    const fileName = path.basename(absoluteSourcePath, ".br");
+    const fileName = path.basename(absoluteSourcePath, ".gz");
     const destinationPath = path.join(absoluteDestinationDir, fileName);
-    const readStream = createReadStream(absoluteSourcePath);
-    const writeStream = createWriteStream(destinationPath);
+    const readStream = fs.createReadStream(absoluteSourcePath);
+    const writeStream = fs.createWriteStream(destinationPath);
     const decompressStream = createBrotliDecompress();
 
     await pipeline(readStream, decompressStream, writeStream);

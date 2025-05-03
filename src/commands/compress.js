@@ -16,7 +16,7 @@ export const compressFile = async (currentDir, sourcePath, destinationPath) => {
     : path.join(currentDir, destinationPath);
 
   try {
-    const fileName = path.basename(absoluteSourcePath) + ".br";
+    const fileName = path.basename(absoluteSourcePath) + ".gz";
     const destinationFile = path.join(absoluteDestinationPath, fileName);
     const readStream = fs.createReadStream(absoluteSourcePath);
     const writeStream = fs.createWriteStream(destinationFile);
