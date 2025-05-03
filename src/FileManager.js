@@ -64,11 +64,9 @@ export class FileManager {
       switch (command) {
         case "up":
           this.currentDir = await navigation.up(this.currentDir);
-          this.showCurrentDir();
           break;
         case "cd":
           this.currentDir = await navigation.cd(this.currentDir, args[0]);
-          this.showCurrentDir();
           break;
         case "ls":
           await navigation.ls(this.currentDir);
@@ -109,6 +107,7 @@ export class FileManager {
         default:
           console.log("Invalid input");
       }
+      this.showCurrentDir();
     } catch (error) {
       console.log("Operation failed");
     }
