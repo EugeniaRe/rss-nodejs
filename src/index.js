@@ -1,6 +1,7 @@
 import { FileManager } from "./FileManager.js";
 const app = () => {
-  const username = process.env.npm_config_username || "User";
+  const usernameArg = process.argv.find((arg) => arg.startsWith("--username="));
+  const username = usernameArg ? usernameArg.split("=")[1] : "User";
 
   const fileManager = new FileManager(username);
   fileManager.start();
