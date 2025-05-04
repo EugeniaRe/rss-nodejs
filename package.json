@@ -1,0 +1,21 @@
+{
+  "name": "file-manager-nodejs",
+  "version": "1.0.0",
+  "description": "- Work using CLI\r - Perform basic file operations (copy, move, delete, rename, etc.)\r - Utilize Streams API\r - Get information about the host machine operating system\r - Perform hash calculations\r - Compress and decompress files",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EugeniaRe/file-manager-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EugeniaRe/file-manager-nodejs/issues"
+  },
+  "homepage": "https://github.com/EugeniaRe/file-manager-nodejs#readme"
+}
